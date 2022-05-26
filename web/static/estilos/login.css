@@ -1,0 +1,90 @@
+/*******************  CUERPO DE PÁGINA *********************/
+/* Contenedor en el main */
+.contenedor {
+    margin: auto;
+    border-radius: 10px 10px 10px 10px;
+    width: 60%;
+    height: 500px;
+    margin-top: 50px;
+    display: grid;
+	grid-template-columns: 50% 50%;
+	gap: 10px;
+    background-color: rgba(189, 215, 245, 0.250);
+    border: 2px solid rgba(0, 9, 65, 0.3);
+}
+
+.cont-izquierda, .cont-derecha{
+    display: block;
+    margin: 20px;
+    justify-self: center;
+}
+
+.form_ingreso {
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.form_ingreso input{
+    width: 90%;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.347);
+}
+
+.btn__ingresar {
+    width: 90%;
+    height: 30px;
+    margin: 10px;
+}
+
+.logo img {
+    display: block;
+    width: 90%;
+    height: 90%;
+    margin: 20px;
+}
+
+/* Opciones registro y olvido de contraseña */
+ .footer-form{
+    text-align: center;
+    margin: 10px;
+    padding: 10px 100px;
+} 
+
+.registro_pass a{
+    display: block;
+    margin-bottom: 3px;
+    padding: 7px 0;
+}
+
+.registro_pass a:hover{
+    border-radius: 50px;
+    background-color: rgba(10, 30, 156, 0.3);
+    color: rgb(13, 35, 101);
+}
+
+.form__activar__cuenta{
+    display: none;
+}
+
+.form__activar__cuenta button{
+    width: 70px;
+    height: 30px;
+    background-color: rgba(30, 143, 255, 0.715);
+    border-radius: 5px;
+    border: none;
+    margin: 10px;
+}
+
+.form__activar__cuenta button:hover{
+    background-color: rgb(18, 30, 106);
+    color: rgb(255, 255, 255);
+}
+
+.form__activar__cuenta-activo {
+    display: block;
+}
+
+.registro_pass-inactivo {
+    display: none;
+}

@@ -1,0 +1,287 @@
+*{margin: 0; padding: 0;}
+
+/*******************  FONDO DE LA PÁGINA  *********************/
+body {
+    background-image: url("../estilos/img/fondo2.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.fondo {
+    background: #f8f8f8b3;
+    width: 100%;
+    height: 88%;
+    position: fixed;
+    size: cover;
+    overflow: auto;
+}
+
+/* Centrar contenido */
+.centrado{
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/*******************  ENCABEZADO  *********************/
+header{
+    width: 100%;
+    overflow: hidden;
+    background: #000941b3;
+}
+
+/* Logo del avión en página index */
+.div-logo {
+    float: left;
+    line-height: 100px;
+}
+
+#avion{
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 20px;
+}
+
+/* Contenedor header para los diferentes elementos */
+.cont-header{
+    display: grid;
+	grid-template-columns: 0.2fr 1fr 0.8fr;
+	gap: 10px;
+}
+
+.cont-header2{
+    display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 10px;
+}
+
+/* Opciones de navegación en página principal (Index)*/
+.bar_encabezado{
+    display: grid;
+    grid-template-columns: 0.3fr 2fr 0.5fr;
+	gap: 10px;
+    align-items: center;
+}
+
+.nav-bar{
+    float: right;
+    line-height: 120px;
+}
+
+.nav-bar a{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    line-height: normal;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.nav-bar a:hover{
+    background:#73a3f1;
+    border-radius: 50px;
+}
+
+/******************** Botones de navegación demás páginas **********************/
+/* Botón página principal (casa) y volver (flecha hacia la izquierda) */
+.btn-home{
+    padding: 20px;
+    width: 100%;
+}
+
+/* Botón ingresar (puertita) */
+.login{
+    display: grid;
+	grid-template-columns: 0.9fr 0.1fr;
+	gap: 10px;
+}
+
+.div-btn-inicio, .usuario{
+    padding: 20px;
+    text-align: right;
+}
+
+.usuario p{
+    color: white;
+    font-size: 16px;
+    margin: 10px;
+    display: block;
+}
+
+.btn-home img , .div-btn-inicio img {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+}
+
+/* Menú para el buscador y el select */
+.div-menu {
+    display: grid;
+    justify-content: flex-start;
+    padding: 20px;
+    line-height: 50px;
+}
+
+.buscador{
+    width: 500px;
+}
+
+.buscador, 
+.cmbo{
+    margin: 10px;
+}
+
+.buscador input{
+    width: 95%;
+    padding: 0 20px;
+    margin: 5px;
+}
+
+.cmbo select{
+    text-indent: 5px;
+    width: 150px;
+}
+
+/* Buscador y botón buscar en header */
+#form_busqueda{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.8fr;
+	gap: 10px;
+}
+
+.btn__buscar{
+    margin: 10px;
+    height: 50px;
+	width: 50px;
+	background: transparent;
+	border: none;
+	border-radius: 100%;
+	cursor: pointer;
+	transition: .1s ease all;
+	text-transform: uppercase;
+}
+
+.btn__buscar:hover {
+    background-color: #13b2b7cd;
+    box-shadow: 2px 0px 20px #b0a1a1bc;
+}
+
+/*******************  PIE DE PÁGINA  *********************/
+footer{
+    background: #000941b3;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 70px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-footer {
+    margin: 20px;
+    width: 200px;
+}
+
+.btn_baja{
+    text-align: center;
+}
+
+.btn_baja button{
+    text-decoration: none;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    display: block;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.btn_baja button:hover {
+    background-color: #eff2f5bc;
+    color: #181818cd;
+}
+
+/*******************  FORMATO PARA EL INGRESO DE DATOS  *********************/
+input, select, textarea{
+    font-family: 'Verdana', sans-serif;
+    color: #1b262c;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    text-indent: 30px;
+}
+
+input{
+    padding: 10px;
+    margin: 5px;
+}
+
+textarea {
+    height: 50px;
+    resize: vertical;
+    font-size: 14px;
+}
+
+/*******************  FORMATO PARA LOS TEXTOS  *********************/
+p, a , label{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 15px;
+    text-indent: 5%;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.h1-titulos{
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 30px 0;
+}
+
+.h2-titulos{
+    text-transform: uppercase;
+    font-size: 30px;
+    padding:  5px 20px;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    font-family: Arial;
+    color: white;
+    background: #2787c666;
+    text-shadow: 4px 4px 6px #2776aa;
+    box-shadow: 0 0 15px #00000029;
+}
+
+/* Usuario logueado - Oculto por defecto */
+.username {
+    display: inline;
+    color: white;  
+    line-height: 50px;
+    font-size: 18px;
+}
+
+/*******************  FORMATO PARA LOS BOTONES  *********************/
+#eliminar, #modificar , #buscar {
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+}
+
+.btn-eliminar, .btn-modificar {
+    border: none;
+    background: none;
+}
+
+#eliminar,  #modificar {
+    cursor: pointer;
+}

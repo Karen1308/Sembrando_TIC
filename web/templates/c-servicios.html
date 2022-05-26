@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title> Servicios </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/general.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/mensajes.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/cm-servicios.css') }}" type="text/css">
+</head>
+
+<body>
+    <!-- ENCABEZADO DE LA PÁGINA -->
+    <header>
+        <section class="cont-header2 centrado">
+            <div class="btn-home">
+                <a href="{{ url_for('index') }}">
+                    <img src="../static/estilos/img/home.png" alt="Home">
+                </a>
+                <a href="{{ url_for('servicios') }}">
+                    <img src="../static/estilos/img/back.png" alt="Regresar">
+                </a>
+            </div>
+            <div class="login">
+                <div class="usuario">
+                    {% if usuario %}
+                    <p id="dato__usuario"> {{ usuario }} </p>
+                    <p id="dato__tipo"> {{ tipo_usuario }} </p>
+                    {% endif %}
+                </div>
+                <div class="div-btn-inicio">
+                    <a href="{{ url_for('logout') }}">
+                        <img src="../static/estilos/img/logout.png">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- CUERPO DE LA PÁGINA -->
+    <section class="fondo">
+        <main>
+            <div class="contenedor centrado">
+                <div class="contenido">
+
+                    <!-- Formulario para agregar servicios  -->
+                    <form action="" method="post" name="CrearServicio" id='form__crear__servicio' class="formulario">
+
+                        <!-- Información de los lugares -->
+                        <div class="cont-izquierda">
+
+                            <!-- Grupo: Nombre -->
+                            <div class="grupo__inputs" id="grupo__nombre">
+                                <label for="nombre" class="grupo__label"> Nombre del Servicio </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="nombre" name="nombre" type="text"
+                                        placeholder="Nombre del servicio" value="{{ request.form.nombre }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error"> Solo se permiten letras, números, espacios, puntos y
+                                    comas. Mínimo de 5 dígitos. </p>
+                            </div>
+
+                            <!-- Grupo: Tipo -->
+                            <div class="grupo__inputs" id="grupo__tipo">
+                                <label for="tipo" class="grupo__label"> Tipo de Servicio </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="tipo" name="tipo" type="text"
+                                        placeholder="Tipo" value="{{ request.form.tipo }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error"> Solo se permiten letras. </p>
+                            </div>
+
+                            <!-- Grupo: Ubicación -->
+                            <div class="grupo__inputs" id="grupo__ubicacion">
+                                <label for="ubicacion" class="grupo__label"> Ubicación </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="ubicacion" name="ubicacion" type="text"
+                                        placeholder="Ubicación" value="{{ request.form.ubicacion }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error"> Ubicación inválida. Porfavor seleccione en el mapa. </p>
+                            </div>
+
+                            <!-- Grupo: Descripción -->
+                            <div class="grupo__inputs" id="grupo__descripcion">
+                                <label for="descripcion" class="grupo__label"> Descripción </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="descripcion" name="descripcion" type="text"
+                                        placeholder="Descripción" value="{{ request.form.descripcion }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error"> Solo se permiten letras, números, espacios, puntos y
+                                    comas. Mínimo de 10 dígitos.
+                                </p>
+                            </div>
+
+                            <!-- Grupo: Dirección -->
+                            <div class="grupo__inputs" id="grupo__direccion">
+                                <label for="direccion" class="grupo__label"> Dirección </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="direccion" name="direccion" type="text"
+                                        placeholder="Dirección" value="{{ request.form.direccion }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error"> Solo se permiten letras, números, espacios, puntos y
+                                    comas. </p>
+                            </div>
+
+                            <!-- Grupo: Contacto -->
+                            <div class="grupo__inputs" id="grupo__contacto">
+                                <label for="contacto" class="grupo__label"> Persona de contacto </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="contacto" name="contacto" type="text"
+                                        placeholder="Contacto" value="{{ request.form.contacto }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error"> Solo se permiten letras y espacios. </p>
+                            </div>
+
+                            <!-- Grupo: Número de contacto -->
+                            <div class="grupo__inputs" id="grupo__nro__contacto">
+                                <label for="nro__contacto" class="grupo__label"> Número de contacto </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="nro__contacto" name="nro__contacto"
+                                        type="text" placeholder="Número de contacto"
+                                        value="{{ request.form.nro__contacto }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error"> Solo se permiten números. </p>
+                            </div>
+
+                            <!-- Servicio recomendado -->
+                            <div class="chckbx">
+                                <p>
+                                    <input type="checkbox" name="recomendado" id="check_recomendado">
+                                    <label for="check_recomendado"> Servicio recomendado </label><br>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grupo__inputs cont-derecha">
+                            <!-- Mini mapa para mostrar ubicacion -->
+                            <div class="mapa">
+                                <!-- <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7770.32592518237!2d-58.03510250649112!3d-33.252089034604204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a53e4792f1a375%3A0xa551c96c512f42a3!2sMercedes%20Rambla%20Hotel!5e0!3m2!1ses-419!2suy!4v1634934633797!5m2!1ses-419!2suy"
+                                    loading="lazy">
+                                </iframe> -->
+                            </div>
+                        </div>
+
+                        <!-- Botón para guardar los cambios y mensajes -->
+                        <div class="grupo__inputs div__btn__confirmar">
+                            <button type="submit" class="btn__confirmar">Confirmar</button>
+                        </div>
+
+                        <!-- Mensaje de exito BD -->
+                        <!-- {% if exito %}
+                        <div class="mensaje__exito" id="mensaje__exito__registro">
+                            <p> {{ exito }} </p>
+                        </div>
+                        {% endif %} -->
+
+                        <!-- Mensaje de error para errores de validacion con BD -->
+                        <!-- {% if error %}
+                        <div class="mensaje__error__registro" id="mensaje__error__registro">
+                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> {{ error }}</p>
+                        </div>
+                        {% endif %} -->
+
+                        <!-- Mensaje de error para campos vacíos -->
+                        <!-- <div class="mensaje__error__registro__js" id="mensaje__error__registro__js">
+                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> No pueden quedar campos vacíos
+                            </p>
+                        </div> -->
+
+                        <!-- OTROS MENSAJES -->
+                        <div class="mensajes" id="mensajes">
+                            {% with mensajes = get_flashed_messages(with_categories=True) %}
+                            {% if mensajes %}
+                            {% for category, mensaje in mensajes %}
+                            <div class="{{ category }}" id="{{ category }}">
+                                {% if category == "mensaje__exito" %}
+                                <p><i class="fas fa-check"></i> {{ mensaje }}</p>
+                                {% else %}
+                                <p><i class="fas fa-exclamation-triangle"></i> Error: {{ mensaje }}</p>
+                                {% endif %}
+                            </div>
+
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+                    </form>
+                </div>
+        </main>
+    </section>
+
+    <!-- SCRIPTS  -->
+    <script src="{{url_for('static', filename='js/cm-servicios.js')}}"></script>
+    <script src="{{url_for('static', filename='js/mensajes.js')}}"></script>
+    <script src="https://kit.fontawesome.com/62f868e9da.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

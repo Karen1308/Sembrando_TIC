@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title> Crear Lugar </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/general.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/mensajes.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/cm-lugares.css') }}" type="text/css">
+
+</head>
+
+<body>
+    <!-- ENCABEZADO DE LA PÁGINA -->
+    <header>
+        <section class="cont-header2 centrado">
+            <div class="btn-home">
+                <a href="{{ url_for('index') }}">
+                    <img src="../static/estilos/img/home.png" alt="Home">
+                </a>
+                <a href="{{ url_for('lugares') }}">
+                    <img src="../static/estilos/img/back.png" alt="Regresar">
+                </a>
+            </div>
+            <div class="login">
+                <div class="usuario">
+                    {% if usuario %}
+                    <p id="dato__usuario"> {{ usuario }} </p>
+                    <p id="dato__tipo"> {{ tipo_usuario }} </p>
+                    {% endif %}
+                </div>
+                <div class="div-btn-inicio">
+                    <a href="{{ url_for('logout') }}">
+                        <img src="../static/estilos/img/logout.png">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- CUERPO DE LA PÁGINA -->
+    <section class="fondo">
+        <main>
+            <div class="contenedor centrado">
+                <div class="contenido">
+
+                    <!-- Formulario para agregar lugares  -->
+                    <form action="" method="post" name="CrearLugar" id='form__crear__lugar' class="formulario">
+
+                        <!-- Información de los lugares -->
+                        <div class="cont-izquierda">
+
+                            <!-- Grupo: Nombre -->
+                            <div class="grupo__inputs" id="grupo__nombre">
+                                <label for="nombre" class="grupo__label"> Nombre Lugar</label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="nombre" name="nombre" type="text"
+                                        placeholder="Nombre del lugar" value="{{ request.form.nombre }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error__p">Solo se permiten letras, números, espacios, puntos y
+                                    comas. Mínimo de 5 dígitos.
+                                </p>
+                            </div>
+
+                            <!-- Grupo: Historia -->
+                            <div class="grupo__inputs" id="grupo__historia">
+                                <label for="historia" class="grupo__label"> Historia </label>
+                                <div class="ingreso__dato">
+                                    <textarea class="ingreso__dato__input" id="historia" name="historia" type="text"
+                                        placeholder="Historia" value="">{{ request.form.historia }}</textarea>
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error__p"> Solo se permiten letras, números, espacios, puntos y
+                                    comas. Mínimo de 20 dígitos.
+                                </p>
+                            </div>
+
+                            <!-- Grupo: Latitud y longitud -->
+                            <div class="grupo__inputs" id="grupo__latlong">
+                                <label for="latlong" class="grupo__label"> Latitud y Longitud </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="latlong" name="latlong" type="text"
+                                        placeholder="Latitud y Longitud" value="{{ request.form.latlong }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error__p"> Formato: 12.2323,-1.53452
+                                </p>
+                            </div>
+
+                            <!-- Grupo: Descripción -->
+                            <div class="grupo__inputs" id="grupo__descripcion">
+                                <label for="descripcion" class="grupo__label"> Descripción </label>
+                                <div class="ingreso__dato">
+                                    <textarea class="ingreso__dato__input" id="descripcion" name="descripcion"
+                                        type="text" placeholder="Descripción"
+                                        value="{{ request.form.descripcion }}"></textarea>
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error__p"> Solo se permiten letras, números y espacios. Mínimo de 20
+                                    dígitos. </p>
+                            </div>
+
+                            <!-- Grupo: Caracteristicas -->
+                            <div class="grupo__inputs" id="grupo__caracteristicas">
+                                <label for="caracteristicas" class="grupo__label"> Caracteristicas </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="caracteristicas" name="caracteristicas"
+                                        type="text" placeholder="Caracteristicas"
+                                        value="{{ request.form.caracteristicas }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error__p"> Formato: playa, montañas </p>
+                            </div>
+
+                            <!-- Grupo: Actividades -->
+                            <div class="grupo__inputs" id="grupo__actividades">
+                                <label for="actividades" class="grupo__label"> Actividades </label>
+                                <div class="ingreso__dato">
+                                    <input class="ingreso__dato__input" id="actividades" name="actividades" type="text"
+                                        placeholder="Actividades" value="{{ request.form.actividades }}">
+                                    <i class="icono__validacion-estado fas fa-times-circle" aria-hidden="true"></i>
+                                </div>
+                                <p class="mensaje__error__p"> Formato: surfear, escalar </p>
+                            </div>
+                        </div>
+
+                        <!-- Imagenes de los lugares -->
+                        <div class="grupo__inputs cont-derecha">
+                            <div class="imagenes">
+                                <!-- Botones eliminar imagen -->
+                                <button class="btn-eliminar">
+                                    <img src="../static/estilos/img/img1.jpg">
+                                    <a href="#" class="ancla_delete">
+                                        <img src="../static/estilos/img/x.png" alt="Eliminar">
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="agregar_imagenes">
+                                <button class="btn-agregar">
+                                    <a href="#">
+                                        <img src="../static/estilos/img/add-image.png" alt="Agregar">
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="confirmar_y_mensajes">
+                    <!-- Botón para guardar los cambios y mensajes -->
+                    <div class="grupo__inputs div__btn__confirmar">
+                        <button id="btn__confirmar" class="btn__confirmar"
+                            onclick="envio_manual(this)">Confirmar</button>
+                    </div>
+
+                    <!-- Mensaje de error para campos vacíos -->
+                    <div class="mensaje__error" id="mensaje__error__vacios">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b> Error: </b> No pueden quedar campos
+                            vacíos o sin validar.
+                        </p>
+                    </div>
+
+                    <!-- OTROS MENSAJES -->
+                    <div class="mensajes" id="mensajes">
+                        {% with mensajes = get_flashed_messages(with_categories=True) %}
+                        {% if mensajes %}
+                        {% for category, mensaje in mensajes %}
+                        <div class="{{ category }}" id="{{ category }}">
+                            {% if category == "mensaje__exito" %}
+                            <p><i class="fas fa-check"></i> {{ mensaje }}</p>
+                            {% else %}
+                            <p><i class="fas fa-exclamation-triangle"></i> Error: {{ mensaje }}</p>
+                            {% endif %}
+                        </div>
+
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- SCRIPTS  -->
+    <script src="{{url_for('static', filename='js/cm-lugares.js')}}"></script>
+    <script src="{{url_for('static', filename='js/mensajes.js')}}"></script>
+    <script src="https://kit.fontawesome.com/62f868e9da.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

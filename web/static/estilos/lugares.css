@@ -1,0 +1,168 @@
+/** Formato para los lugares **/
+/*****************************/
+/* Division para mensajes y boton agregar*/
+.grilla_mensaje_boton{
+    display: grid;
+    grid-template-columns: 1fr 0.2fr;
+	gap: 10px;
+}
+
+/* Botón agregar*/
+.div-btn-agregar {
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.div-btn-agregar button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-agregar img{
+    width: 30px;
+    height: 30px;
+}
+
+/* Contenedor */
+.contenedor {
+    display: block;
+    border-radius: 10px;
+    width: 99%;
+    background: #ffffff99;
+    height: 350px;
+    border: 2px solid #0009414d;
+    margin-bottom: 20px;
+}
+
+.arriba {
+    display: flex;
+    width: 98%;
+    height: 300px;    
+}
+
+/* Contenido a la izquierda */
+.cont-izquierda{
+    margin: 10px;
+    float: left;
+    border: none;
+    width: 70%;
+    overflow-y:auto;
+}
+
+#historia{
+    padding: 20px 40px;
+}
+
+.h2-titulos{
+    margin: 10px;
+}
+
+.cont-izquierda p {
+    padding: 8px 0;   
+    text-align: left;
+}
+
+.caracteristicas, .actividades {
+    background-color: #000941b3;
+    color: white;
+    border-radius: 10px;
+    padding: 4px;
+    margin: 5px;
+    text-align: left;
+    overflow-x: auto;
+}
+
+/* Contenido al centro */
+.cont-centro{
+    margin: 10px;
+    width: 30%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.cont-centro img {
+    margin: 5px;
+    width: 50%;
+    display: inline;
+}
+
+/* Contenido a la derecha */
+.cont-derecha{
+    margin: 10px;
+    float: right;
+    border: none;
+    width: 40px;
+    margin-right: 0;
+}
+
+.cont-derecha a {
+  display: block;
+  float: right;
+}
+
+/* Contenido abajo - Botones */
+.abajo{
+    margin-bottom: 0;
+}
+
+.cont-abajo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.cont-abajo img {
+    width: 30px;
+    height: 30px;
+}
+
+#form_mg {
+    display: flex;
+    width: 60px;
+}
+
+#cant_mg {
+    margin: 10px;
+    font-weight: bold;
+    color: rgb(241, 140, 140);
+}
+
+.btn-mg {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	transition: .1s ease all;
+	text-transform: uppercase;
+}
+
+.false_input{
+    border: none;
+    background: transparent;
+    text-indent: 0%;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    cursor: none;
+}
+
+.false_input:focus{
+    border: none;
+    background: transparent;
+}
+
+.label_false_input{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.grupo__sugerencias{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.titulo_ventana{
+    text-transform: uppercase;
+    font-size: 18px;
+}

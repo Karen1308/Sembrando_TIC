@@ -1,0 +1,241 @@
+/*********************************************************************/
+/*************  FORMATO PARA MENSAJES: ERROR, EXITO  ****************/
+/*******************************************************************/
+/* Div para el input para ingresar el dato */
+.ingreso__dato {
+	position: relative;
+}
+
+.ingreso__dato__input,
+select {
+	width: 60%;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;
+}
+
+.ingreso__dato__input:focus {
+	border: 2px solid #468cdb;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
+}
+
+/* Label de los inputs */
+.grupo__label {
+	display: block;
+	font-weight: 700;
+	padding: 10px;
+}
+
+/* Mensaje exito - se activa luego de validación - JS */
+.mensaje__exito {
+	padding: 15px 0;
+	font-size: 16px;
+	color: #082c03;
+	display: none;
+	background-color: rgba(97, 212, 154, 0.757);
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+.mensaje__exito-activo {
+	display: block;
+}
+
+/* Mensaje error para datos inválidos - Se chequea con js */
+.mensaje__error , .mensaje__error__p {
+	font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+	padding: 0 40px;
+	margin: 0;
+}
+
+/* Icono en el input */
+.icono__validacion-estado {
+	position: absolute;
+	right: 5%;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+
+.mensaje__exito,
+.mensaje__error {
+	grid-column: span 2;
+}
+
+/* FORMATO PARA LOS MENSAJES DEL LOGIN */
+.mensaje__exito p,
+.mensaje__error p {
+	margin: 5px 0;
+}
+
+.mensaje__exito,
+.mensaje__error {
+	border-radius: 5px;
+	padding: 5px;
+	margin: 10px auto;
+	display: none;
+	height: 30px;
+	text-align: left;
+}
+
+.mensaje__error i,
+.mensaje__error__p i {
+	color: rgb(104, 12, 12);
+}
+
+.mensaje__exito i {
+	color: rgb(8, 92, 8);
+}
+
+.mensaje__error {
+	background: rgb(245, 117, 105);
+}
+
+.mensaje__exito {
+	background: rgb(161, 219, 161);
+}
+
+.mensaje__exito-activo,
+.mensaje__error-activo,
+.mensaje__error__p-activo {
+	display: block;
+}
+
+
+/*********************************************************************/
+/*************** Estilos para icono de Validación - JS ***************/
+/* Icono dato ingresado correcto */
+.grupo__inputs-correcto .icono__validacion-estado {
+	opacity: 1;
+	color: #1ed12d;
+}
+
+/* Dato ingresado incorrecto */
+/* Mensaje */
+.grupo__inputs-incorrecto .grupo__label {
+	color: #bb2929;
+}
+
+/* Icono */
+.grupo__inputs-incorrecto .icono__validacion-estado {
+	color: #bb2929;
+	opacity: 1;
+}
+
+/* Borde del input */
+.grupo__inputs-incorrecto .ingreso__dato__input {
+	border: 2px solid #bb2929;
+}
+
+/*********************************************************************/
+/*************  VENTANA ELIMINAR O DAR DE BAJA  *********************/
+/*******************************************************************/
+.ventana__principal {
+	display: flex;
+	background-color: rgba(0, 0, 0, 0.3);
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	pointer-events: none;
+	opacity: 0;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.ventana__principal p,
+.ventana__principal a {
+	text-indent: 0;
+}
+
+.ventana__contenido{
+	display: grid;
+    grid-template-columns: 90% 5%;
+	gap: 5px;
+}
+
+.mostrar {
+	pointer-events: auto;
+	opacity: 1;
+}
+
+.ventana {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(149, 220, 243);
+	width: 400px;
+	padding: 30px 50px;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	gap: 10px;
+}
+
+.titulo_ventana {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.ancla_confirmar{
+	width: 150px;
+	white-space: normal;
+	align-self: center;
+  	justify-self: center;
+}
+
+.btn-eliminar-si, .btn-sugerencia{
+	background-color: rgb(46, 46, 139);
+	border: 0;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	font-size: 14px;
+	padding: 10px 50%;
+	color: white;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+/******* BOTÓN CERRAR (X) *********/
+.btn_close {
+	background: rgb(149, 220, 243);
+	width: 40px;
+	height: 40px;
+	border: none;
+	color: rgb(0, 0, 0);
+	border-radius: 5px;
+	margin: 3px;
+}
+
+.btn_close i {
+	font-size: 20px;
+}
+
+.btn_close:hover {
+	background: black;
+	color: white;
+}
+
+/*********************************************************************/
+/*****************  VENTANA ENVIAR SUGERENCIAS  *********************/
+/*******************************************************************/
+.ventana__sugerencia{
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(149, 220, 243);
+	padding: 30px 50px;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	gap: 10px;
+}

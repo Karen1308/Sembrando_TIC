@@ -14,7 +14,7 @@ sql_tabla_fotos = '''CREATE TABLE FOTOS(
                  FOTO STRING NOT NULL,
                  FECHA DATE)'''
 
-sql_tabla_lugares_fotos = '''CREATE TABLE LUGARES_FOTOS( 
+sql_tabla_lugares_fotos = '''CREATE TABLE FOTOS_LUGARES( 
                  ID_LUGAR INTEGER NOT NULL,
                  ID_FOTO INTEGER NOT NULL,
                  CONSTRAINT PK_LUGARES_FOTOS PRIMARY KEY(ID_LUGAR, ID_FOTO),
@@ -23,29 +23,32 @@ sql_tabla_lugares_fotos = '''CREATE TABLE LUGARES_FOTOS(
 
 sql_tabla_servicios = '''CREATE TABLE SERVICIOS( 
                  ID_SERVICIO INTEGER PRIMARY KEY AUTOINCREMENT, 
-                 TIPO INTEGER NOT NULL, 
+                 TIPO STRING NOT NULL, 
                  NOM_SERVICIO STRING NOT NULL, 
                  LAT_LONG STRING, 
                  DESCRIPCION STRING, 
                  DIRECCION STRING NOT NULL, 
                  TEL_CONTACTO INTEGER NOT NULL, 
-                 NOM_CONTACTO STRING NOT NULL)'''
+                 NOM_CONTACTO STRING NOT NULL,
+                 RECOMENDADO BOOLEAN) '''
 
-sql_tabla_usuario= '''CREATE TABLE USUARIOS( 
-                 CORREO STRING PRIMARY KEY NOT NULL, 
+sql_tabla_usuario = '''CREATE TABLE USUARIOS( 
+                 CORREO STRING UNIQUE PRIMARY KEY NOT NULL,
+                 PASSWORD STRING NOT NULL, 
                  NOMBRE STRING NOT NULL, 
                  APELLIDO STRING NOT NULL, 
-                 TIPO INTEGER NOT NULL, 
-                 PASSWORD STRING NOT NULL)'''
+                 TIPO INTEGER NOT NULL,
+                 ESTADO BOOLEAN NOT NULL,
+                 FECHA_INACTIVO	STRING) '''
 
-sql_tabla_usuario_lugares = '''CREATE TABLE USUARIOS_LUGARES( 
+sql_tabla_usuario_lugares = '''CREATE TABLE LUGARES_USUARIOS( 
                  ID_LUGAR INTEGER NOT NULL, 
                  CORREO STRING NOT NULL, 
                  CONSTRAINT PK_USUARIOS_LUGARES PRIMARY KEY(ID_LUGAR, CORREO), 
                  CONSTRAINT FK_LUGARES FOREIGN KEY(ID_LUGAR) REFERENCES LUGARES(ID_LUGAR), 
                  CONSTRAINT FK_USUARIOS FOREIGN KEY(CORREO) REFERENCES USUARIOS(CORREO))'''
 
-sql_tabla_usuario_servicios = '''CREATE TABLE USUARIOS_SERVICIOS( 
+sql_tabla_usuario_servicios = '''CREATE TABLE SERVICIOS_USUARIOS( 
                  ID_SERVICIO INTEGER NOT NULL, 
                  CORREO STRING NOT NULL, 
                  CONSTRAINT PK_USUARIOS_SERVICIOS PRIMARY KEY(ID_SERVICIO, CORREO), 
@@ -58,6 +61,28 @@ sql_tabla_servicios_lugares = '''CREATE TABLE SERVICIOS_LUGARES (
                  CONSTRAINT PK_SERVICIOS_LUGARES PRIMARY KEY(ID_SERVICIO, ID_LUGAR), 
                  CONSTRAINT FK_SERVICIOS FOREIGN KEY(ID_SERVICIO) REFERENCES SERVICIOS(ID_SERVICIO), 
                  CONSTRAINT FK_LUGARES FOREIGN KEY(ID_LUGAR) REFERENCES LUGARES(ID_LUGAR))'''
+
+sql_tabla_likes_lugares_servicios = '''CREATE TABLE LIKES (
+                CORREO NOT NULL,
+                ID_LUGAR	INT,
+                ID_SERVICIO INT,
+                CONSTRAINT FK_LIKES_LUGARES FOREIGN KEY(ID_LUGAR) REFERENCES LUGARES(ID_LUGAR),
+                CONSTRAINT FK_LIKES_USUARIOS FOREIGN KEY(CORREO) REFERENCES USUARIOS(CORREO),
+                CONSTRAINT FK_LIKES_SERVICIO FOREIGN KEY(ID_SERVICIO) REFERENCES SERVICIOS(ID_SERVICIO))'''
+
+sql_tabla_sesiones = ''' CREATE TABLE SESIONES(
+                ID INTEGER PRIMARY KEY,
+                CORREO STRING,
+                FECHA_HORA STRING,
+                FOREIGN KEY(CORREO) REFERENCES USUARIOS(CORREO))'''
+
+sql_tabla_cambios = ''' CREATE TABLE CAMBIOS(
+                TIPO STRING,
+                CAMBIO STRING,
+                FECHA	STRING,
+                LUGAR	INTEGER
+                FOREIGN KEY(LUGAR) REFERENCES LUGARES (ID_LUGAR)) '''
+
 
 if __name__ == '__main__':
     try:
@@ -73,6 +98,10 @@ if __name__ == '__main__':
         conexion.execute(sql_tabla_usuario_lugares)
         conexion.execute(sql_tabla_usuario_servicios)
         conexion.execute(sql_tabla_servicios_lugares)
+
+        conexion.execute(sql_tabla_likes_lugares_servicios)
+        conexion.execute(sql_tabla_sesiones)
+        conexion.execute(sql_tabla_cambios)
 
         conexion.close()
         print('Creación finalizada.')

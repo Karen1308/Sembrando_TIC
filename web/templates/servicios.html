@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title> Servicios </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/general.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/mensajes.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/servicios.css') }}" type="text/css">
+</head>
+
+<body>
+    <!-- ENCABEZADO DE LA PÁGINA -->
+    <header>
+        <section class="cont-header centrado">
+            <div class="btn-home">
+                <a href="{{ url_for('index') }}">
+                    <img src="../static/estilos/img/home.png" alt="Regresar">
+                </a>
+            </div>
+
+            <div class="div-menu">
+                <!-- Formulario de busqueda  -->
+                <form action="" method="get" name="Buscar" id='form_busqueda'>
+                    <div class="buscador">
+                        <input name="buscador" id="buscador" placeholder="Buscar..." type="search"
+                            value="{{ request.form.buscador }}">
+                    </div>
+                    <div class="div__btn__buscar">
+                        <button type="submit" class="btn__buscar">
+                            <img id="modificar" src="../static/estilos/img/search.png" alt="Modificar">
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="login">
+                {% if usuario %}
+                <div class="usuario">
+                    <p id="dato__usuario"> {{ usuario }} </p>
+                    <p id="dato__tipo"> {{ tipo_usuario }} </p>
+                </div>
+                <div class="div-btn-inicio">
+                    <a href="{{ url_for('logout') }}">
+                        <img src="../static/estilos/img/logout.png">
+                    </a>
+                </div>
+                {% else %}
+                <div class="div-btn-inicio">
+                    <a href="{{ url_for('login') }}">
+                        <img src="../static/estilos/img/login.png">
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </header>
+
+    <!-- CUERPO DE LA PÁGINA -->
+    <section class="fondo">
+        <section class="centrado">
+            <div class="grilla_mensaje_boton">
+                
+                <!-- MENSAJES -->
+                <div class="mensajes" id="mensajes">
+                    {% with mensajes = get_flashed_messages(with_categories=True) %}
+                    {% if mensajes %}
+                    {% for category, mensaje in mensajes %}
+                    <div class="{{ category }}" id="{{ category }}">
+                        {% if category == "mensaje__exito" %}
+                        <p><i class="fas fa-check"></i> {{ mensaje }}</p>
+                        {% else %}
+                        <p><i class="fas fa-exclamation-triangle"></i> Error: {{ mensaje }}</p>
+                        {% endif %}
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <!-- Mensaje de error del buscador -->
+                    <!-- <div class="mensaje__buscador__error" id="mensaje__buscador__error">
+                        <p id="mensaje__buscador"><i class="fas fa-exclamation-triangle"></i> <b>Error:</b></p>
+                    </div> -->
+
+                </div>
+
+                <div class="div-btn-agregar" id='btn__agregar'>
+                    <a href="{{ url_for('servicio') }}">
+                        <img src="../static/estilos/img/list.png">
+                    </a>
+                </div>
+            </div>
+
+            <main>
+                {% for servicio in servicios %}
+                <div class="contenedor">
+                    <div class="arriba">
+
+                        <!-- Información de los servicios -->
+                        <div class="cont-izquierda">
+                            <h2 class="h2-titulos"> {{ servicio[2] }} </h2>
+                            <p> Tipo: {{ servicio[1] }} </p>
+                            <p> Ubicacion: {{ servicio[3] }}</p>
+                            <p> Descripción: {{ servicio[4] }}</p>
+                            <p> Dirección: {{ servicio[5] }}</p>
+                            <p> Contacto: {{ servicio[7] }} - {{ servicio[6] }}</p>
+
+                            <!-- Mostrar imagen o no dependiendo si es un servicio recomendado -->
+                            <p id="recomendado">{{ servicio[8] }}</p>
+                            <div class="serv__recomendado" id="serv__recomendado">
+                                <img src="../static/estilos/img/recomendado.png" alt="Servicio recomendado"
+                                    id="img-check">
+                                <label for="img-check" id="check_servicio"> Servicio recomendado </label>
+                            </div>
+                        </div>
+
+                        <div class="cont-centro">
+                            <!-- Mini mapa para mostrar ubicacion -->
+                            <div class="mapa">
+                                <!-- <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7770.32592518237!2d-58.03510250649112!3d-33.252089034604204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a53e4792f1a375%3A0xa551c96c512f42a3!2sMercedes%20Rambla%20Hotel!5e0!3m2!1ses-419!2suy!4v1634934633797!5m2!1ses-419!2suy"
+                                    loading="lazy">
+                                </iframe> -->
+                            </div>
+                        </div>
+
+                        <div class="cont-derecha">
+                            <!-- Botones modificar - eliminar) -->
+                            <button class="btn-eliminar" id="btn__eliminar">
+                                <img id="eliminar" src="../static/estilos/img/delete.png" alt="Eliminar">
+                            </button>
+
+                            <button class="btn-modificar">
+                                <img id="modificar" src="../static/estilos/img/update.png" alt="Modificar">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="abajo">
+                        <!-- Botones de me gusta y visualizar -->
+                        <div class="cont-abajo">
+                            <img id="mg" src="../static/estilos/img/mg.png" alt="Me gusta">
+                            <p id="cant_mg">{{ servicio[11] }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </main>
+        </section>
+    </section>
+
+    <!-- SCRIPTS  -->
+    <script src="{{url_for('static', filename='js/servicios.js')}}"></script>
+    <script src="{{url_for('static', filename='js/mensajes.js')}}"></script>
+    <script src="https://kit.fontawesome.com/62f868e9da.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

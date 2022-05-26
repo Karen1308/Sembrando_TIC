@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Administrar página </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/general.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/mensajes.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/administrar.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'estilos/lugares.css') }}" type="text/css">
+
+</head>
+
+<body>
+    <!-- ENCABEZADO DE LA PÁGINA -->
+    <header>
+        <section class="cont-header2 centrado">
+            <div class="btn-home">
+                <a href="{{ url_for('index') }}">
+                    <img src="../static/estilos/img/home.png" alt="Regresar">
+                </a>
+            </div>
+
+            <div class="login">
+                {% if usuario %}
+                <div class="usuario">
+                    <p id="dato__usuario"> {{ usuario }} </p>
+                    <p id="dato__tipo"> {{ tipo_usuario }} </p>
+                </div>
+                <div class="div-btn-inicio">
+                    <a href="{{ url_for('logout') }}">
+                        <img src="../static/estilos/img/logout.png">
+                    </a>
+                </div>
+                {% else %}
+                <div class="div-btn-inicio">
+                    <a href="{{ url_for('login') }}">
+                        <img src="../static/estilos/img/login.png">
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </header>
+
+    <!-- CUERPO DE LA PÁGINA -->
+    <section class="fondo">
+        <section class="centrado">
+
+            <div class="btns_opciones">
+                <button class="btn_opcion" id="btn__sugerencia"
+                    onclick="mostrar_opciones(document.getElementById('opcion__sugerencias'), this)">
+                    Sugerencias
+                </button>
+                <button class="btn_opcion" id="btn__usuarios"
+                    onclick="mostrar_opciones(document.getElementById('opcion__usuarios'), this)">
+                    Usuarios Inactivos
+                </button>
+            </div>
+
+            <div class="contenido">
+                <div class="opciones" id="opcion__sugerencias">
+                    {% for sugerencia in sugerencias %}
+                    <div class="sugerencias">
+                        <!-- Sugerencias ingresadas -->
+                        <div class="datos">
+                            <div class="titulo_admin">
+                                <h2> Acción: {{ sugerencia[0] }} {{ sugerencia[5] }} </h2>
+                            </div>
+
+                            <p> Cambio sugerido: {{ sugerencia[1] }} </p>
+                            <p> Fecha sugerencia: {{ sugerencia[2] }} </p>
+
+                            <!-- Mas datos del lugar -->
+                            <div class="more">
+                                <button class="btn_more" id="btn_more"
+                                    onclick="mostrar_ventana(document.getElementById('mas__contenido'))"> Más datos
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+
+                                <div class="mas__contenido" id="mas__contenido">
+                                    <div class="contenedor">
+                                        <div class="arriba">
+                                            <!-- Información del lugar -->
+                                            <div class="cont-izquierda">
+                                                <h2 class="h2-titulos"> {{ sugerencia[5] }} </h2>
+                                                <p id="historia"> {{ sugerencia[6] }} </p>
+                                                <p> Ubicación: {{ sugerencia[7] }} </p>
+                                                <p> Descripción: {{ sugerencia[8] }}</p>
+                                                <p class="caracteristicas"> Caracteristicas: {{ sugerencia[9] }}} </p>
+                                                <p class="actividades">Actividades: {{ sugerencia[10] }} </p>
+                                            </div>
+                                            <div class="cont-centro">
+
+                                                <!-- Imagenes de los lugares -->
+                                                <div class="imagenes">
+                                                    <img src="../static/estilos/img/img1.jpg">
+                                                </div>
+                                                <div class="imagenes">
+                                                    <img src="../static/estilos/img/img2.jpg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Acciones -->
+                        <div class="btns_acciones">
+                            <!-- <a href="/cambio/delete/id_lugar" class="ancla_confirmar" id="ancla__enviar"> -->
+                            <button class="btn_delete" aria-placeholder="Eliminar sugerencia"> <i
+                                    class="fas fa-times"></i>
+                            </button>
+                            <!-- </a> -->
+                            <button class="btn_process" aria-placeholder="Procesar sugerencia"><i
+                                    class="fas fa-angle-double-right"></i></button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="opciones" id="opcion__usuarios">
+
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- SCRIPTS  -->
+    <script src="{{url_for('static', filename='js/mensajes.js')}}"></script>
+    <script src="{{url_for('static', filename='js/administrar.js')}}"></script>
+    <script src="https://kit.fontawesome.com/62f868e9da.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

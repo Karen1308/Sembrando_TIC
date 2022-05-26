@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title> Login </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = '../static/estilos/general.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = '../static/estilos/mensajes.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = '../static/estilos/login.css') }}" type="text/css">
+
+</head>
+
+<body>
+    <!-- ENCABEZADO DE LA PÁGINA -->
+    <header>
+        <section class="centrado">
+            <div class="btn-home">
+                <a href="{{ url_for('index') }}">
+                    <img src="../static/estilos/img/home.png" alt="Home">
+                </a>
+            </div>
+        </section>
+    </header>
+
+    <!-- CUERPO DE LA PÁGINA -->
+    <section class="fondo">
+        <main>
+            <div class="contenedor">
+                <div class="cont-izquierda">
+                    <!-- Formulario de ingreso  -->
+                    <form action="" method="post" name="Ingresar" class="form_ingreso" id="form__ingreso">
+                        <div>
+                            <h1 class="h1-titulos"> Ingreso </h1>
+                            <input id="correo" name="correo" placeholder="Correo" type="text"
+                                value="{{ request.form.correo }}" />
+                            <input id="password" name="password" placeholder="Password" type="Password"
+                                value="{{ request.form.password }}" />
+                            <button type="submit" class="btn__ingresar">Ingresar</button>
+                        </div>
+                    </form>
+
+                    <!-- OTROS MENSAJES -->
+                    <div class="mensajes" id="mensajes">
+                        {% with mensajes = get_flashed_messages(with_categories=True) %}
+                        {% if mensajes %}
+                        {% for category, mensaje in mensajes %}
+                        <div class="{{ category }}" id="{{ category }}">
+                            {% if category == "mensaje__exito" %}
+                            <p><i class="fas fa-check"></i> {{ mensaje }}</p>
+                            {% else %}
+                            <p><i class="fas fa-exclamation-triangle"></i> Error: {{ mensaje }}</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+
+                    <div class="footer-form">
+                        <!-- Opciones registro y olvido de contraseña -->
+                        <div class="registro_pass" id="registro__pass">
+                            <a href="#">¿Perdiste tu contraseña?</a>
+                            <a href="{{ url_for('registro') }}">¿No tienes cuenta? Registrate </a>
+                        </div>
+
+                        <!-- 'Formulario' para activar la cuenta  -->
+                        <div class="form__activar__cuenta" id="form__activar__cuenta">
+                            <p>¿Desea activar la cuenta? </p>
+                            <a href="/activar">
+                                <button id="btn__activar">Si</button>
+                            </a>
+                            <button id="btn__no__activar">No</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="cont-derecha">
+                    <div class="logo">
+                        <img src="../static/estilos/img/logo.png">
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </section>
+
+    <!-- SCRIPTS  -->
+    <script src="{{url_for('static', filename='js/mensajes.js')}}"></script>
+    <script src="https://kit.fontawesome.com/62f868e9da.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
